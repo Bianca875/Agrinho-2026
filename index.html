@@ -6,10 +6,10 @@
     <title>Simulador Agrinho 2026: BioDefensivos</title>
     <style>
         :root {
-            --primary: #2e7d32;
-            --secondary: #81c784;
+            --primary: #43a047;
+            --secondary: #a5d6a7;
             --background: #f1f8e9;
-            --dark: #1b5e20;
+            --dark: #2e7d32;
         }
 
         body {
@@ -31,12 +31,10 @@
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 1200px;
+            margin: 20px auto;
+            background: transparent;
+            padding: 0 24px 40px;
         }
 
         .painel {
@@ -78,6 +76,91 @@
             margin: 15px 0;
             border-radius: 4px;
         }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin: 24px 0 36px;
+            align-items: start;
+            justify-items: center;
+        }
+
+        .figure-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 980px;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
+            padding: 18px 22px;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .figure-card img {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 0 auto 18px;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .figure-caption {
+            padding: 16px 20px 22px;
+            font-size: 1rem;
+            color: #2e7d32;
+            font-weight: 600;
+            background: #f7fbf7;
+            text-align: center;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .example-card {
+            background: #ffffff;
+            border: 1px solid rgba(66, 165, 67, 0.18);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .example-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .example-caption {
+            padding: 18px 16px;
+            background: #f1f8e9;
+            color: #2e7d32;
+        }
+
+        .example-caption h3 {
+            margin: 0 0 10px;
+            font-size: 1rem;
+        }
+
+        .example-caption p {
+            margin: 0;
+            line-height: 1.6;
+            opacity: 0.92;
+        }
     </style>
 </head>
 <body>
@@ -85,6 +168,19 @@
 <header>
     <h1>Simulador Agro Forte, Futuro Sustentável</h1>
     <p>Concurso Agrinho 2026 - Produção de Bioinseticidas</p>
+    <p style="font-size:0.95rem; opacity:0.85; margin-top: 8px;">Projeto por <strong>Bianca Vinhaski</strong></p>
+    <div class="hero-grid">
+        <figure class="figure-card">
+            <div class="card-title">Desenvolvimento Vegetal Sustentável: Cultivo Sem Infestação</div>
+            <img src="images/user-corn.jpg" alt="Milho saudável" loading="lazy" />
+            <figcaption class="figure-caption">Milho saudável: planta vigorosa e cultura sem infestação.</figcaption>
+        </figure>
+        <figure class="figure-card">
+            <div class="card-title">Dano Econômico e Fitossanitário: Ataque da Lagarta-do-Cartucho</div>
+            <img src="images/damage.jpg" alt="Milho danificado" loading="lazy" onerror="this.onerror=null; this.src='images/damage.svg'" />
+            <figcaption class="figure-caption">Milho danificado: ataque da lagarta-do-cartucho em espigas e folhas.</figcaption>
+        </figure>
+    </div>
 </header>
 
 <div class="container">
@@ -93,11 +189,13 @@
         <div>Saúde do Meio Ambiente: <span id="status-eco" class="status-val">100%</span></div>
     </div>
 
+    <!-- Exemplos visuais removidos conforme solicitado -->
+
     <div id="fase1" class="fase ativa">
         <h2>Passo 1: Identificação e Coleta</h2>
         <p>Sua lavoura de milho foi atacada pela <strong>Lagarta-do-cartucho (Spodoptera frugiperda)</strong>. Em vez de usar químicos pesados, vamos coletar algumas lagartas infectadas pelo vírus natural da própria espécie (Baculovírus).</p>
-        <div class="alert">💡 <em>Curiosidade científica: O Baculovírus infecta apenas essa lagarta, sendo 100% seguro para humanos, abelhas e o solo!</em></div>
-        <button class="btn" onclick="proximaFase(2)">Coletar Pragas e Ir para o Laboratório</button>
+        <div class="alert">💡 <em>Curiosidade científica: ensaios de campo e literatura técnico-científica mostram que Baculovírus reduz Spodoptera frugiperda em mais de 85% e é seletivo, preservando humanos, abelhas e microrganismos do solo.</em></div>
+        <button class="btn" onclick="location.href='coleta.html'">Coletar Pragas e Ir para o Laboratório</button>
     </div>
 
     <div id="fase2" class="fase">
@@ -118,19 +216,15 @@
         <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; border-left: 5px solid var(--primary);">
             <p><strong>Resultado da Operação:</strong></p>
             <ul>
-                <li>População da Praga: <span style="color: green; font-weight: bold;">Controlada (Nível Seguro)</span></li>
-                <li>Impacto Ambiental: <span style="color: green; font-weight: bold;">ZERO Poluição</span></li>
-                <li>Biodiversidade (Abelhas e Insetos do bem): <span style="color: green; font-weight: bold;">Preservada</span></li>
+                <li>População da Praga: <span style="color: var(--primary); font-weight: bold;">Controlada (Nível Seguro)</span></li>
+                <li>Impacto Ambiental: <span style="color: var(--primary); font-weight: bold;">ZERO Poluição</span></li>
+                <li>Biodiversidade (Abelhas e Insetos do bem): <span style="color: var(--primary); font-weight: bold;">Preservada</span></li>
+                <li>Evidência Científica: <span style="color: var(--primary); font-weight: bold;">Eficácia comprovada >85% contra Spodoptera frugiperda em testes de campo</span></li>
             </ul>
             <p><strong>Conclusão:</strong> Ao utilizar a própria praga para produzir o controle biológico, alcançamos o equilíbrio perfeito. Fortalecemos o Agro sem destruir o Futuro Sustentável!</p>
         </div>
         <button class="btn" onclick="reiniciar()">Simular Novamente</button>
     </div>
 </div>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador Agrinho 2026: BioDefensivos</title>
-    
-    <link rel="stylesheet" href="style.css">
-</head>
+</body>
+</html>

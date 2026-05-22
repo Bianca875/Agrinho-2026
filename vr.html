@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Realidade Virtual — Coleta no Talhão</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <style>
+    body, html { margin:0; height:100%; }
+    #ui { position: fixed; right: 18px; top: 18px; background: rgba(255,255,255,0.9); padding: 12px 14px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,0.12); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif }
+    #ui h3 { margin:0 0 8px; font-size:1rem }
+    #ui button { background:#43a047; color:#fff; border:0; padding:8px 12px; border-radius:6px; cursor:pointer }
+    #ui button:disabled { opacity:0.5; cursor:not-allowed }
+    #hint { position: fixed; left: 18px; bottom: 18px; background: rgba(255,255,255,0.9); padding:10px 12px; border-radius:8px }
+  </style>
+</head>
+<body>
+  <div id="ui">
+    <h3>Coleta VR</h3>
+    <div>Coletadas: <span id="count">0</span></div>
+    <div style="margin-top:8px">
+      <button id="toLab" disabled>Ir para o Laboratório</button>
+    </div>
+  </div>
+  <div id="hint">Use WASD ou joystick. Olhe para um inseto e clique (cursor) para coletar.</div>
+
+  <a-scene background="color: #bfe6b8">
+    <!-- Camera + cursor -->
+    <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 6">
+      <a-entity cursor="fuse: false; rayOrigin: mouse" raycaster="objects: .collectable" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02" material="color: #fff; shader: flat"></a-entity>
+    </a-entity>
+
+    <!-- Ground -->
+    <a-plane rotation="-90 0 0" width="60" height="60" color="#e9f3e6"></a-plane>
+
+    <!-- Simple corn rows (visual guides) -->
+    <a-entity id="rows">
+      <!-- create repeated low boxes to simulate rows -->
+      <a-entity position="0 0 0">
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="-6 0.8 -4"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="-6 0.8 -2"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="-6 0.8 0"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="-6 0.8 2"></a-box>
+      </a-entity>
+      <a-entity position="0 0 0">
+        <a-box depth="0.4" height="1.6" width="0.4" color="#6bbf52" position="-2 0.8 -4"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#6bbf52" position="-2 0.8 -2"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#6bbf52" position="-2 0.8 0"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#6bbf52" position="-2 0.8 2"></a-box>
+      </a-entity>
+      <a-entity position="0 0 0">
+        <a-box depth="0.4" height="1.6" width="0.4" color="#4e9b3a" position="2 0.8 -4"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#4e9b3a" position="2 0.8 -2"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#4e9b3a" position="2 0.8 0"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#4e9b3a" position="2 0.8 2"></a-box>
+      </a-entity>
+      <a-entity position="0 0 0">
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="6 0.8 -4"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="6 0.8 -2"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="6 0.8 0"></a-box>
+        <a-box depth="0.4" height="1.6" width="0.4" color="#5aa84a" position="6 0.8 2"></a-box>
+      </a-entity>
+    </a-entity>
+
+    <!-- Pests to collect: spheres with class collectable -->
+    <a-sphere id="pest1" class="collectable" position="-3 0.6 -2" radius="0.25" color="#6b2e1f"></a-sphere>
+    <a-sphere id="pest2" class="collectable" position="0 0.6 -1" radius="0.25" color="#6b2e1f"></a-sphere>
+    <a-sphere id="pest3" class="collectable" position="3 0.6 -2.5" radius="0.25" color="#6b2e1f"></a-sphere>
+    <a-sphere id="pest4" class="collectable" position="1.5 0.6 1" radius="0.25" color="#6b2e1f"></a-sphere>
+
+    <!-- Light -->
+    <a-entity light="type: ambient; intensity: 0.7"></a-entity>
+    <a-entity light="type: directional; intensity: 0.6" position="0 10 4"></a-entity>
+  </a-scene>
+
+  <script>
+    const collected = new Set();
+    const countEl = document.getElementById('count');
+    const toLab = document.getElementById('toLab');
+    function updateUI(){
+      countEl.textContent = collected.size;
+      toLab.disabled = collected.size === 0;
+    }
+
+    // Attach click listeners using A-Frame's event system
+    ['pest1','pest2','pest3','pest4'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('click', () => {
+        if(collected.has(id)) return;
+        collected.add(id);
+        el.setAttribute('visible', 'false');
+        updateUI();
+      });
+    });
+
+    toLab.addEventListener('click', () => {
+      const ids = Array.from(collected).join(',');
+      location.href = 'laboratorio.html?samples=' + encodeURIComponent(ids);
+    });
+  </script>
+</body>
+</html>

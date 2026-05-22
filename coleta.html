@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coleta de Pragas — Agrinho 2026</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f1f8e9; margin:0; padding:24px; color:#333 }
+        header { text-align:center; margin-bottom:18px }
+        .grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:20px; max-width:1200px; margin:0 auto }
+        .card { background:white; border-radius:10px; padding:18px; box-shadow:0 12px 30px rgba(0,0,0,0.08); text-align:center }
+        .card img { width:100%; height:320px; object-fit:cover; border-radius:6px; }
+        .card h3 { margin:12px 0 8px; color:var(--dark, #2e7d32); font-size:1.15rem }
+        .card p { margin:0 0 12px }
+        .collect-btn { background:#43a047; color:#fff; border:0; padding:10px 14px; border-radius:6px; cursor:pointer }
+        .collect-btn.collected { background:#888; }
+        .actions { max-width:1200px; margin:18px auto; text-align:center }
+        .lab-btn { background:#2e7d32; color:white; padding:12px 20px; border-radius:8px; border:0; cursor:pointer; opacity:0.6 }
+        .lab-btn.enabled { opacity:1 }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Coleta de Pragas — Vá pelas plantações e colete amostras</h1>
+        <p>Selecione as áreas que apresentam sinais de infestação e colete amostras para o laboratório.</p>
+    </header>
+
+    <main>
+        <div class="grid">
+            <div class="card" data-id="1">
+                <h3>Área 1 — Milho jovem</h3>
+                <img src="images/user-corn.jpg" alt="Área 1 - milho" />
+                <p>Plantas com bom desenvolvimento; verifique presença de lagartas nas folhas inferiores.</p>
+                <button class="collect-btn" onclick="toggleCollect(this,1)">Coletar amostras</button>
+            </div>
+
+            <div class="card" data-id="2">
+                <h3>Área 2 — Milho em floração</h3>
+                <img src="images/damage.jpg" alt="Área 2 - milho danificado" />
+                <p>Sinais visíveis de dano nas espigas. Alta probabilidade de lagarta-do-cartucho.</p>
+                <button class="collect-btn" onclick="toggleCollect(this,2)">Coletar amostras</button>
+            </div>
+
+            <div class="card" data-id="3">
+                <h3>Área 3 — Borda do talhão</h3>
+                <img src="images/alt-corn.jpg" alt="Área 3 - borda" />
+                <p>Plantas mistas; inspecione bordas onde pragas costumam iniciar.</p>
+                <button class="collect-btn" onclick="toggleCollect(this,3)">Coletar amostras</button>
+            </div>
+
+            <div class="card" data-id="4">
+                <h3>Área 4 — Área próxima ao escoamento</h3>
+                <img src="images/user-corn.jpg" alt="Área 4 - escoamento" />
+                <p>Verifique plantas com umidade elevada; pragas podem se concentrar aqui.</p>
+                <button class="collect-btn" onclick="toggleCollect(this,4)">Coletar amostras</button>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="go-lab" class="lab-btn" onclick="goLab()" disabled>Ir para o Laboratório</button>
+        </div>
+    </main>
+
+    <script>
+        const collected = new Set();
+        function toggleCollect(btn,id){
+            if(collected.has(id)){
+                collected.delete(id);
+                btn.textContent = 'Coletar amostras';
+                btn.classList.remove('collected');
+            } else {
+                collected.add(id);
+                btn.textContent = 'Coletado';
+                btn.classList.add('collected');
+            }
+            document.getElementById('go-lab').disabled = collected.size === 0;
+            document.getElementById('go-lab').classList.toggle('enabled', collected.size>0);
+        }
+        function goLab(){
+            if(collected.size===0) return;
+            // passar estado via query string simples
+            const ids = Array.from(collected).join(',');
+            location.href = 'laboratorio.html?samples=' + encodeURIComponent(ids);
+        }
+    </script>
+</body>
+</html>

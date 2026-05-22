@@ -2,9 +2,9 @@
    CONFIGURAÇÕES GERAIS E VARIÁVEIS
    ========================================== */
 :root {
-    --primary: #2e7d32;       /* Verde folha principal */
-    --primary-dark: #1b5e20;  /* Verde escuro para hover e destaque */
-    --secondary: #81c784;     /* Verde claro para detalhes */
+    --primary: #43a047;       /* Verde folha principal mais claro */
+    --primary-dark: #2e7d32;  /* Verde escuro para hover e destaque */
+    --secondary: #a5d6a7;     /* Verde ainda mais claro para detalhes */
     --background: #f1f8e9;    /* Fundo suave e ecológico */
     --white: #ffffff;
     --text-dark: #333333;

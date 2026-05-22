@@ -1,0 +1,19 @@
+<svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="damageGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9fbe7"/>
+      <stop offset="100%" stop-color="#c8e6c9"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="360" rx="30" fill="#f1f8e9"/>
+  <g transform="translate(80 70)">
+    <path d="M20 240 C60 180 120 160 170 180 C220 200 280 190 320 140 C380 70 420 90 430 150 L420 230 C360 250 260 240 200 260 C140 280 60 260 20 240 Z" fill="#8bc34a" stroke="#689f38" stroke-width="6"/>
+    <path d="M120 100 C90 70 100 40 140 50 C180 60 190 120 180 140 C170 160 140 150 120 100 Z" fill="#fdd835" stroke="#f9a825" stroke-width="5"/>
+    <path d="M140 45 L150 25 M160 50 L170 30 M120 55 L110 35" stroke="#8d6e63" stroke-width="5" stroke-linecap="round"/>
+    <path d="M110 210 C130 190 150 200 170 180" stroke="#f44336" stroke-width="14" stroke-linecap="round"/>
+    <path d="M190 190 C210 170 230 180 250 160" stroke="#f44336" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="240" cy="170" r="12" fill="#f44336"/>
+    <circle cx="190" cy="200" r="10" fill="#f44336"/>
+  </g>
+  <text x="240" y="330" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="28" fill="#2e7d32">Danos</text>
+</svg>

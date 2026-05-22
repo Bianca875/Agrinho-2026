@@ -1,0 +1,24 @@
+<svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cornGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffec8b"/>
+      <stop offset="100%" stop-color="#ffcd3c"/>
+    </linearGradient>
+    <linearGradient id="leafGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6fbf73"/>
+      <stop offset="100%" stop-color="#2e7d32"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="360" rx="30" fill="#e8f5e9"/>
+  <g transform="translate(120 40)">
+    <ellipse cx="120" cy="170" rx="100" ry="130" fill="url(#cornGradient)" stroke="#d4af37" stroke-width="8"/>
+    <path d="M80 40 C40 80 40 200 80 260 L120 240 C80 200 80 120 120 80 Z" fill="url(#leafGradient)"/>
+    <path d="M160 40 C200 80 200 200 160 260 L120 240 C160 200 160 120 120 80 Z" fill="url(#leafGradient)"/>
+    <g fill="#f7d13d" stroke="#e0b131" stroke-width="4">
+      <ellipse cx="100" cy="120" rx="18" ry="26"/>
+      <ellipse cx="100" cy="170" rx="18" ry="26"/>
+      <ellipse cx="100" cy="220" rx="18" ry="26"/>
+    </g>
+  </g>
+  <text x="240" y="320" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" fill="#2e7d32">Milho</text>
+</svg>

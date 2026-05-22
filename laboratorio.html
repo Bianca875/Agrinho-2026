@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Laboratório — Agrinho 2026</title>
+    <style>
+        body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f7f9f6; color:#222; margin:0; padding:24px}
+        header{ text-align:center; margin-bottom:18px }
+        .box{ max-width:900px; margin:0 auto; background:white; padding:20px; border-radius:10px; box-shadow:0 12px 30px rgba(0,0,0,0.06)}
+        .samples{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px }
+        .sample{ flex:1 1 200px; border:1px solid #e6efe6; padding:12px; border-radius:8px; background:#fbfff9 }
+        .btn{ background:#43a047; color:white; border:0; padding:10px 14px; border-radius:6px; cursor:pointer }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Laboratório — Amostras Recebidas</h1>
+        <p>Aqui você verá as amostras coletadas para processamento.</p>
+    </header>
+    <main>
+        <div class="box">
+            <div id="info">Carregando amostras...</div>
+            <div class="samples" id="samples"></div>
+            <div style="text-align:center; margin-top:16px">
+                <button class="btn" onclick="location.href='index.html#fase2'">Ir para Simulação (Processar)</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const s = params.get('samples') || '';
+        const container = document.getElementById('samples');
+        const info = document.getElementById('info');
+        if(!s){ info.textContent = 'Nenhuma amostra enviada.'; }
+        else{
+            const ids = s.split(',').filter(Boolean);
+            info.innerHTML = '<strong>' + ids.length + ' amostra(s) recebida(s)</strong>';
+            ids.forEach(id => {
+                const el = document.createElement('div');
+                el.className = 'sample';
+                el.innerHTML = '<strong>Amostra ' + id + '</strong><p>Origem: Área ' + id + '</p>';
+                container.appendChild(el);
+            });
+        }
+    </script>
+</body>
+</html>
