@@ -1,0 +1,104 @@
+/* ==========================================
+   CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================== */
+:root {
+    --primary: #2e7d32;       /* Verde folha principal */
+    --primary-dark: #1b5e20;  /* Verde escuro para hover e destaque */
+    --secondary: #81c784;     /* Verde claro para detalhes */
+    --background: #f1f8e9;    /* Fundo suave e ecológico */
+    --white: #ffffff;
+    --text-dark: #333333;
+    --alert-bg: #fff3cd;      /* Amarelo para caixas de curiosidade */
+    --alert-border: #ffeeba;
+    --alert-text: #856404;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* ==========================================
+   CABEÇALHO (HEADER)
+   ========================================== */
+header {
+    text-align: center;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 30px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* ==========================================
+   CONTAINER PRINCIPAL
+   ========================================== */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================
+   PAINEL DE STATUS (KPIs)
+   ========================================== */
+.painel {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #e8f5e9;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    border: 1px solid #c8e6c9;
+}
+
+.status-val {
+    color: var(--primary-dark);
+}
+
+/* ==========================================
+   ELEMENTOS DE TEXTO E ALERTA
+   ========================================== */
+h2 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+.alert {
+    padding: 15px;
+    background-color: var(--alert-bg);
+    color: var(--alert-text);
+    border-left: 5px solid var(--alert-border);
+    margin: 20px 0;
+    border-radius: 4px;

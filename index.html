@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Agrinho 2026: BioDefensivos</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --secondary: #81c784;
+            --background: #f1f8e9;
+            --dark: #1b5e20;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .painel {
+            display: flex;
+            justify-content: space-between;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .status-val { color: var(--dark); }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover { background-color: var(--dark); }
+        .btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        .fase { display: none; }
+        .fase.ativa { display: block; }
+
+        .alert {
+            padding: 15px;
+            background-color: #fff3cd;
+            color: #856404;
+            border-left: 5px solid #ffeeba;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Simulador Agro Forte, Futuro Sustentável</h1>
+    <p>Concurso Agrinho 2026 - Produção de Bioinseticidas</p>
+</header>
+
+<div class="container">
+    <div class="painel">
+        <div>Praga na Lavoura: <span id="status-praga" class="status-val">Lagarta-do-Cartucho (Alta)</span></div>
+        <div>Saúde do Meio Ambiente: <span id="status-eco" class="status-val">100%</span></div>
+    </div>
+
+    <div id="fase1" class="fase ativa">
+        <h2>Passo 1: Identificação e Coleta</h2>
+        <p>Sua lavoura de milho foi atacada pela <strong>Lagarta-do-cartucho (Spodoptera frugiperda)</strong>. Em vez de usar químicos pesados, vamos coletar algumas lagartas infectadas pelo vírus natural da própria espécie (Baculovírus).</p>
+        <div class="alert">💡 <em>Curiosidade científica: O Baculovírus infecta apenas essa lagarta, sendo 100% seguro para humanos, abelhas e o solo!</em></div>
+        <button class="btn" onclick="proximaFase(2)">Coletar Pragas e Ir para o Laboratório</button>
+    </div>
+
+    <div id="fase2" class="fase">
+        <h2>Passo 2: Laboratório Biotecnológico</h2>
+        <p>As lagartas coletadas foram processadas para isolar o vírus. Agora, precisamos multiplicar esse bioinseticida natural em larga escala.</p>
+        <button class="btn" id="btn-produzir" onclick="produzirBio()">Processar e Multiplicar Vírus (Girar Centrífuga)</button>
+        <p id="progresso-texto" style="margin-top: 15px; font-weight: bold; text-align: center;"></p>
+    </div>
+
+    <div id="fase3" class="fase">
+        <h2>Passo 3: Aplicação Ecológica</h2>
+        <p>Seu bioinseticida baseado na própria praga está pronto! Vamos aplicá-lo na lavoura via pulverização com drones (reduzindo também a pegada de carbono).</p>
+        <button class="btn" onclick="aplicarDefensivo()">Pulverizar Bioinseticida</button>
+    </div>
+
+    <div id="fase-final" class="fase">
+        <h2>Reflexão para o Agrinho 2026</h2>
+        <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; border-left: 5px solid var(--primary);">
+            <p><strong>Resultado da Operação:</strong></p>
+            <ul>
+                <li>População da Praga: <span style="color: green; font-weight: bold;">Controlada (Nível Seguro)</span></li>
+                <li>Impacto Ambiental: <span style="color: green; font-weight: bold;">ZERO Poluição</span></li>
+                <li>Biodiversidade (Abelhas e Insetos do bem): <span style="color: green; font-weight: bold;">Preservada</span></li>
+            </ul>
+            <p><strong>Conclusão:</strong> Ao utilizar a própria praga para produzir o controle biológico, alcançamos o equilíbrio perfeito. Fortalecemos o Agro sem destruir o Futuro Sustentável!</p>
+        </div>
+        <button class="btn" onclick="reiniciar()">Simular Novamente</button>
+    </div>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Agrinho 2026: BioDefensivos</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
